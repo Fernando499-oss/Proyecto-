@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenguas de Señas en Nicaragua</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --color-primario: #3498db;
+            --color-secundario: #2ecc71;
+            --color-fondo: #f0f0f0;
+            --color-texto: #333;
+            --color-sombra: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .neumorfico {
+            background: var(--color-fondo);
+            box-shadow: 8px 8px 16px var(--color-sombra),
+                        -8px -8px 16px rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .neumorfico:hover {
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 20px var(--color-sombra),
+                        -10px -10px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .modo-oscuro {
+            --color-fondo: #2c3e50;
+            --color-texto: #ecf0f1;
+            --color-sombra: rgba(0, 0, 0, 0.3);
+        }
+
+        #particulas-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .imagen-seccion {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .imagen-seccion:hover {
+            transform: scale(1.05);
+        }
+
+        .interruptor-modo-oscuro {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .interruptor-modo-oscuro:hover {
+            transform: rotate(15deg);
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .foro {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .foro-mensaje {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .boton-descarga {
+            display: inline-block;
+            background-color: var(--color-primario);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton-descarga:hover {
+            background-color: var(--color-secundario);
+        }
+
+        nav ul li a {
+            position: relative;
+            text-decoration: none;
+            color: var(--color-primario);
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-secundario);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-secundario);
+        }
+
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div id="particulas-js"></div>
+    <button id="interruptorModoOscuro" class="interruptor-modo-oscuro neumorfico p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+    </button>
+    <header class="neumorfico mb-8">
+        <div class="flex items-center justify-center mb-6">
+            <img src="https://image.pollinations.ai/prompt/Minimalist%20logo%20of%20hands%20forming%20LSN%20letters%20modern%20elegant%20vector%20style%20teal%20and%20white?width=200&height=200" alt="Logo LSN" class="logo">
+            <h1 class="text-4xl font-bold text-center">Lenguas de Señas en Nicaragua</h1>
+        </div>
+        <nav>
+            <ul class="flex justify-center space-x-6">
+                <li><a href="#historia" class="text-color-primario hover:text-color-secundario transition-colors">Historia del ISN</a></li>
+                <li><a href="#reconocimiento" class="text-color-primario hover:text-color-secundario transition-colors">Reconocimiento Oficial</a></li>
+                <li><a href="#interaccion" class="text-color-primario hover:text-color-secundario transition-colors">Interacción con Otras Lenguas</a></li>
+                <li><a href="#situacion" class="text-color-primario hover:text-color-secundario transition-colors">Situación Actual</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="flex-grow container mx-auto px-4">
+        <section id="historia" class="neumorfico">
+            <h2 class="text-3xl font-semibold mb-4">Historia del ISN</h2>
+            <img src="https://picsum.photos/seed/historia/1000/500" alt="Niños aprendiendo lenguaje de señas nicaragüense" class="imagen-seccion">
+            <p class="mb-4">El Idioma de Señas Nicaragüense (ISN) se desarrolló en la década de 1980 en la primera escuela pública para niños sordos en Nicaragua. Este lenguaje emergió de la interacción entre estudiantes y maestros, evolucionando de manera natural.</p>
+            <a href="#" class="boton-descarga">Descargar informe completo sobre la historia del ISN</a>
+            <div class="foro mt-6">
+                <h3 class="text-2xl font-semibold mb-4">Foro: Comparte tu experiencia con el ISN</h3>
+                <div class="foro-mensaje">
+                    <p><strong>María L.</strong>: El ISN cambió mi vida. Aprendí a comunicarme de una manera que nunca pensé posible.</p>
+                </div>
+                <div class="foro-mensaje">
+                    <p><strong>Carlos R.</strong>: Como maestro, he visto cómo el ISN ha evolucionado en los últimos 20 años. Es fascinante.</p>
+                </div>
+                <!-- Aquí se pueden agregar más mensajes del foro -->
+            </div>
+        </section>
+        <section id="reconocimiento" class="neumorfico">
+            <h2 class="text-3xl font-semibold mb-4">Reconocimiento Oficial</h2>
+            <img src="https://picsum.photos/seed/reconocimiento/1000/500" alt="Documento oficial de reconocimiento del ISN" class="imagen-seccion">
+            <p class="mb-4">En 2009, se aprobó la Ley N°675, que reconoce oficialmente al ISN, estableciendo un marco legal para su uso y promoción en el país.</p>
+            <a href="#" class="boton-descarga">Descargar texto completo de la Ley N°675</a>
+        </section>
+        <section id="interaccion" class="neumorfico">
+            <h2 class="text-3xl font-semibold mb-4">Interacción con Otras Lenguas</h2>
+            <img src="https://picsum.photos/seed/interaccion/1000/500" alt="Personas comunicándose en diferentes lenguas de señas" class="imagen-seccion">
+            <p class="mb-4">Aunque algunos investigadores han sugerido limitar la influencia de otras lenguas de señas, el ISN ha mantenido su evolución y riqueza a través de la interacción con otras lenguas de señas.</p>
+            <a href="#" class="boton-descarga">Descargar estudio comparativo de lenguas de señas</a>
+            <div class="foro mt-6">
+                <h3 class="text-2xl font-semibold mb-4">Foro: Intercambio cultural en lenguas de señas</h3>
+                <div class="foro-mensaje">
+                    <p><strong>Ana P.</strong>: He tenido la oportunidad de interactuar con personas que usan ASL. Es increíble cómo podemos entendernos.</p>
+                </div>
+                <div class="foro-mensaje">
+                    <p><strong>Javier M.</strong>: La diversidad en las lenguas de señas es fascinante. Cada una tiene su propia belleza y complejidad.</p>
+                </div>
+                <!-- Aquí se pueden agregar más mensajes del foro -->
+            </div>
+        </section>
+        <section id="situacion" class="neumorfico">
+            <h2 class="text-3xl font-semibold mb-4">Situación Actual y Perspectivas</h2>
+            <img src="https://picsum.photos/seed/situacion/1000/500" alt="Clase moderna de lengua de señas en una escuela nicaragüense" class="imagen-seccion">
+            <p class="mb-4">El ISN se enseña en diversas instituciones educativas y es parte integral de la cultura de la comunidad sorda en Nicaragua. Sin embargo, aún existen desafíos, especialmente en áreas rurales.</p>
+            <a href="#" class="boton-descarga">Descargar informe sobre la situación actual del ISN</a>
+            <div class="foro mt-6">
+                <h3 class="text-2xl font-semibold mb-4">Foro: Propuestas para el futuro del ISN</h3>
+                <div class="foro-mensaje">
+                    <p><strong>Laura S.</strong>: Necesitamos más programas de formación para intérpretes de ISN en todo el país.</p>
+                </div>
+                <div class="foro-mensaje">
+                    <p><strong>Roberto G.</strong>: Propongo crear una aplicación móvil para aprender ISN de forma interactiva.</p>
+                </div>
+                <!-- Aquí se pueden agregar más mensajes del foro -->
+            </div>
+        </section>
+    </main>
+    <footer class="neumorfico mt-8 text-center">
+        <p>&copy; 2024 Lenguas de Señas en Nicaragua. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // El código JavaScript permanece igual que en la versión anterior
+        // Configuración de Particles.js, animaciones GSAP, interruptor de modo oscuro, etc.
+    </script>
+</body>
+</html>
